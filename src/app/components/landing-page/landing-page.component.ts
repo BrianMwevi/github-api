@@ -9,15 +9,13 @@ import { User } from '../../models/User';
   styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent implements OnInit {
-  private defaultUsername = 'Brian Mwevi';
-  defaultSearch: boolean = true;
-  @Output() user: EventEmitter<any> = new EventEmitter();
+  defaultUser!: User;
+  @Output() user: EventEmitter<User> = new EventEmitter();
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.newSearch(this.defaultUsername);
-    this.defaultSearch = false;
+    this.userService.user.subscribe((user) => (this.defaultUser = user));
   }
 
   newSearch(username: string): void {
