@@ -18,6 +18,7 @@ export class SearchFormComponent implements OnInit {
     if (username.length > 1) {
       username = username.replace(/\s/g, '').trim().toLocaleLowerCase();
       this.newSearch.emit(username);
+      this.username = '';
     }
   }
 }
