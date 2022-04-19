@@ -2,7 +2,7 @@
 
 ##### Description
 
-A responsive webapp that enables users to search Github users, view their profile, followers and those following.
+A responsive webapp that enables users to search Github users, view their profile, followers and those following. [Figma Design](https://www.figma.com/proto/DiEq7ZtzUfHHOvAM4mnFHR/GecKy?node-id=1%3A4)
 
 ## Behaviour Driven Development
 
@@ -40,6 +40,11 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Further Angular help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## App Screenshot
+[![Landing](https://i.postimg.cc/15QCL4VG/Screenshot-from-2022-04-19-05-46-45.png)](https://postimg.cc/dD5jCsB3)
+[![Repos](https://i.postimg.cc/MGvdyQgS/Screenshot-from-2022-04-19-05-47-04.png)](https://postimg.cc/d7c2FLqH)
+
 
 ## Development
 
