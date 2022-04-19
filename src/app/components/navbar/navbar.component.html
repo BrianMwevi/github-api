@@ -48,7 +48,11 @@
           >
         </li>
         <li class="nav-item">
-          <button class="nav-link ml-3 my-3 btn btn-sm text-dark">
+          <a
+            href="https://api.github.com/rate_limit"
+            target="_blank"
+            class="nav-link ml-3 my-3 bg-light btn btn-sm text-dark"
+          >
             Requests:
             <b
               class="badge badge-info"
@@ -58,7 +62,7 @@
               }"
               >{{ requests.used }} | <span>{{ requests.limit }}</span></b
             >
-          </button>
+          </a>
         </li>
       </ul>
     </div>
