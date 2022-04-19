@@ -16,9 +16,7 @@ export class RepoService {
   async getRepos(username: string) {
     this.repos = [];
     const value = this.http.get<Repo[]>(
-      `${environment.githubApi}/users/${username}/repos?per_page=50`,
-      this.userService.httpOptions
-    );
+      `${environment.githubApi}/users/${username}/repos?per_page=50`    );
     await lastValueFrom(value)
       .then((repos) => (this.repos = repos))
       .catch((error) => error);

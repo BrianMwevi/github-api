@@ -18,8 +18,7 @@ export class UserFollowersService {
 
   async getFollowers(username: string) {
     const value = this.http.get<any>(
-      `${environment.githubApi}/users/${username}/followers`,
-      this.httpOptions
+      `${environment.githubApi}/users/${username}/followers`
     );
     return await lastValueFrom(value)
       .then((followers) => followers)

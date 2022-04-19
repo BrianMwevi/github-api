@@ -14,13 +14,12 @@ export class FollowerService {
       Authorization: `token ${environment.token}`,
     }),
   };
-  
+
   constructor(private http: HttpClient) {}
 
   async getFollowers(username: string) {
     const value = this.http.get<any>(
-      `${environment.githubApi}/users/${username}/followers`,
-      this.httpOptions
+      `${environment.githubApi}/users/${username}/followers`
     );
     return await lastValueFrom(value)
       .then((followers) => followers)
