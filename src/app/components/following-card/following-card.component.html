@@ -1,0 +1,41 @@
+<div class="container-fluid" *ngIf="following">
+  <div class="row">
+    <div
+      class="col-10 col-sm-6 col-md-4 mx-auto"
+      *ngFor="let following of following"
+    >
+      <div class="card my-3 px-5 py-2">
+        <div class="card-body">
+          <div class="row no-gutters">
+            <div class="col-lg-3 align-self-center">
+              <img
+                src="{{ following.avatar_url }}"
+                class="img-fluid rounded-circle"
+              />
+            </div>
+            <div class="col-lg-9 pl-4 text-left">
+              <h3 class="gradient-text">{{ following.login }}</h3>
+              <ul class="p-0 m-0 text-white">
+                <li class="nav-link p-0">
+                  User Id:
+                  <small class="text-secondary">
+                    <b>{{ following.id }}</b></small
+                  >
+                </li>
+                <li class="nav-link px-0 py-2 m-0">
+                  <a
+                    class="nav-link p-0 m-0 text-left text-white gradient-text"
+                    href="{{ following.html_url }}"
+                    target="_blank"
+                  >
+                    View User On Github
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
