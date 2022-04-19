@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/User';
 
@@ -12,7 +14,7 @@ export class LandingPageComponent implements OnInit {
   defaultUser!: User;
   @Output() user: EventEmitter<User> = new EventEmitter();
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.userService.user.subscribe((user) => (this.defaultUser = user));
@@ -21,7 +23,11 @@ export class LandingPageComponent implements OnInit {
   newSearch(username: string): void {
     this.userService
       .getUser(username)
-      .then((users) => this.user.emit(users))
+      .then((users) => {
+        if (users.length === 1) {
+          this.router.navigate([`/${this.defaultUser.login}/repos`]);
+        }
+      })
       .catch((error) =>
         error.status === 404
           ? `No user with username: ${username}`
