@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { RequestLimitService } from 'src/app/services/request-limit.service';
 
 import { User } from 'src/app/models/User';
 
@@ -11,10 +12,16 @@ import { User } from 'src/app/models/User';
 export class UserCardComponent implements OnInit {
   user!: User;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private requestLimitService: RequestLimitService
+  ) {}
 
   ngOnInit(): void {
-    this.userService.user.subscribe((user) => (this.user = user));
+    this.userService.user.subscribe((user) => {
+      this.user = user;
+      this.requestLimitService.getRequestLimit().subscribe();
+    });
   }
 
   // getUsers(users: any): void {

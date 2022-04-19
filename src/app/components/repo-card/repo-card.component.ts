@@ -18,7 +18,7 @@ export class RepoCardComponent implements OnInit {
   constructor(
     private repoService: RepoService,
     private requestLimitService: RequestLimitService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {

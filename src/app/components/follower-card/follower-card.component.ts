@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { FollowerService } from '../../services/follower.service';
 import { Router } from '@angular/router';
-
+import { RequestLimitService } from 'src/app/services/request-limit.service';
 @Component({
   selector: 'app-follower-card',
   templateUrl: './follower-card.component.html',
@@ -14,7 +14,8 @@ export class FollowerCardComponent implements OnInit {
   constructor(
     private router: Router,
     private followerService: FollowerService,
-    private userService: UserService
+    private userService: UserService,
+    private requestLimitService: RequestLimitService
   ) {}
 
   ngOnInit(): void {
@@ -24,7 +25,11 @@ export class FollowerCardComponent implements OnInit {
   getFollowers(username: string): void {
     this.followerService
       .getFollowers(username)
-      .then((followers) => (this.followers = followers))
+      .then((followers) => {
+        this.followers = followers;
+        this.requestLimitService.getRequestLimit().subscribe()
+
+      })
       .catch((error) => {
         console.log('Followers search error: ', error);
       });

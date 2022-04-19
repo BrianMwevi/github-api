@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { BehaviorSubject, lastValueFrom } from 'rxjs';
 
+import { RequestLimitService } from './request-limit.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,22 +14,22 @@ export class UserService {
   private userSource = new BehaviorSubject<any>(null);
   user = this.userSource.asObservable();
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `token ${environment.token}`,
-    }),
-  };
+  // httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     Authorization: `token ${environment.token}`,
+  //   }),
+  // };
 
-  constructor(private http: HttpClient) {
-    this.getUser(this.defaultUsername)
+  constructor(
+    private http: HttpClient,
+    private requestLimitService: RequestLimitService
+  ) {
+    this.getUser(this.defaultUsername);
   }
 
   async getUser(username: string) {
-    const value = this.http.get(
-      `${environment.githubApi}/users/${username}`,
-      this.httpOptions
-    );
+    const value = this.http.get(`${environment.githubApi}/users/${username}`);
     return await lastValueFrom(value)
       .then((user) => {
         this.userSource.next(user);
@@ -53,11 +54,11 @@ export class UserService {
 
   async searchUser(username: string) {
     const value = this.http.get(
-      `${environment.githubApi}/search/users?q=${username}&per_page=3&sort=joined&order=asc`,
-      this.httpOptions
+      `${environment.githubApi}/search/users?q=${username}&per_page=3&sort=joined&order=asc`
     );
     return await lastValueFrom(value)
       .then((result) => {
+        this.requestLimitService.getRequestLimit().subscribe();
         return result;
       })
       .catch((error) => error);

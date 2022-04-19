@@ -8,12 +8,6 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class UserFollowersService {
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `token ${environment.token}`,
-    }),
-  };
   constructor(private http: HttpClient) {}
 
   async getFollowers(username: string) {
