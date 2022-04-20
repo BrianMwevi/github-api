@@ -1,6 +1,6 @@
 <section class="home text-white text-center">
   <!-- Landing Page Start -->
-  <div class="container center-container" #noUsers>
+  <div class="container center-container" *ngIf="!users">
     <div class="row">
       <div class="col-10 col-lg-8 mx-auto pt-4">
         <h3 class="home-para-1 py-2">
@@ -17,21 +17,43 @@
     </div>
 
     <!-- Fetched Users Start -->
-    <app-search-form (newSearch)="newSearch($event)"></app-search-form>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-md-6 col-lg-4 mx-auto">
+          <app-search-form (newSearch)="newSearch($event)"></app-search-form>
+        </div>
+      </div>
+    </div>
     <!-- Fetched Users End -->
-    <h6 class="text-white" *ngIf="defaultUser">
+    <h6 class="text-white" *ngIf="user && !users">
       User:
-      <a routerLink="/{{ defaultUser.login }}/repos">
+      <a routerLink="/{{ user.login }}/repos">
         <strong class="gradient-text"
-          >{{ defaultUser.login }}
+          >{{ user.login }}
           <i class="fa-solid fa-arrow-up-right-from-square"></i></strong
       ></a>
     </h6>
   </div>
 
-  <!-- Landing Page End -->
+  <!-- If fetch returns more than 1 User -->
+  <div [ngClass]="users.length > 0 ? 'users-bg' : 'no-users'" *ngIf="users">
+    <h2 class="text-center py-2">
+      <strong class="gradient-text">GecKy</strong> Found
+      {{ users.length }} Users
+    </h2>
+    <div class="mt-3" *ngIf="users.length === 0">
+      <p class="gradient-text">Try Another User</p>
+      <app-search-form (newSearch)="newSearch($event)"></app-search-form>
+    </div>
+    <div *ngIf="users.length > 0">
+      <app-follower-card
+        (selectedUser)="selectUserFromArray($event)"
+        [followers]="users"
+      ></app-follower-card>
+    </div>
+  </div>
 
-  <!-- Display Users Start -->
-  <!-- <app-user-card></app-user-card> -->
   <!-- Display Users End -->
 </section>
+
+<!-- Landing Page End -->

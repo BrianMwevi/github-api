@@ -4,7 +4,7 @@
       class="col-10 col-sm-6 col-md-4 mx-auto"
       *ngFor="let follower of followers"
     >
-      <div class="card my-3 px-5 py-2">
+      <div class="card my-3 px-5 py-2" appHover (click)="selectUser(follower)">
         <div class="card-body">
           <div class="row no-gutters">
             <div class="col-lg-3 align-self-center">
@@ -24,15 +24,18 @@
                 </li>
                 <li class="nav-link px-0 py-2 m-0">
                   <a
+                    *ngIf="user"
                     class="nav-link p-0 m-0 text-left text-white gradient-text"
                     href="{{ follower.html_url }}"
                     target="_blank"
                   >
                     View User On Github
                   </a>
+                  <button *ngIf="!user" appHover class="btn btn-sm">
+                    Select User
+                  </button>
                 </li>
               </ul>
-             
             </div>
           </div>
         </div>

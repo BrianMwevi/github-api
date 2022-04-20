@@ -96,3 +96,17 @@ p {
   ) !important;
   transition: all 0.3s ease-in-out;
 }
+
+.no-users {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  margin:0;
+  padding:70px 100px;
+  transform: translate(50%, -50%);
+  background: linear-gradient(
+    90deg,
+    rgba(15, 11, 48, 0.5),
+    rgba(15, 11, 48, 0.5)
+  ) !important;
+}

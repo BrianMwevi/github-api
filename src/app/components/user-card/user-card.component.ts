@@ -10,21 +10,17 @@ import { User } from 'src/app/models/User';
   styleUrls: ['./user-card.component.css'],
 })
 export class UserCardComponent implements OnInit {
-  user!: User;
+  @Input() user!: User;
+  @Output() selectedUser: EventEmitter<User> = new EventEmitter();
+  userArray: boolean = false;
 
-  constructor(
-    private userService: UserService,
-    private requestLimitService: RequestLimitService
-  ) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.user.subscribe((user) => {
-      this.user = user;
-      this.requestLimitService.getRequestLimit().subscribe();
-    });
+    this.userService.user.subscribe((user) => (this.user = user));
   }
 
-  // getUsers(users: any): void {
-  //   this.users = event;
-  // }
+  selectUser(user: User) {
+    this.selectedUser.emit(user);
+  }
 }

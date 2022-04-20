@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
-import { ThemeDirective } from './customerDirectives/theme.directive';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { RepoCardComponent } from './components/repo-card/repo-card.component';
@@ -21,12 +20,13 @@ import { FollowingPageComponent } from './components/following-page/following-pa
 import { FollowersPageComponent } from './components/followers-page/followers-page.component';
 import { RepoPageComponent } from './components/repo-page/repo-page.component';
 import { CompareFollowersPageComponent } from './components/compare-followers-page/compare-followers-page.component';
+import { UserThemeComponent } from './components/user-theme/user-theme.component';
+import { HoverDirective } from './customDirectives/hover.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ThemeDirective,
     SearchFormComponent,
     UserCardComponent,
     RepoCardComponent,
@@ -37,6 +37,8 @@ import { CompareFollowersPageComponent } from './components/compare-followers-pa
     FollowersPageComponent,
     RepoPageComponent,
     CompareFollowersPageComponent,
+    UserThemeComponent,
+    HoverDirective,
   ],
   imports: [
     BrowserModule,

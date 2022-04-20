@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.user.subscribe((user) => (this.user = user));
-    this.requestLimitService.getRequestLimit().subscribe((response) => {
+    this.requestLimitService.requestObject.subscribe((response) => {
       this.requests.limit = response.resources.core.limit;
       this.requests.used = response.resources.core.used;
       this.requests.remaining = response.resources.core.remaining;
