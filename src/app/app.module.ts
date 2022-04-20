@@ -22,6 +22,8 @@ import { RepoPageComponent } from './components/repo-page/repo-page.component';
 import { CompareFollowersPageComponent } from './components/compare-followers-page/compare-followers-page.component';
 import { UserThemeComponent } from './components/user-theme/user-theme.component';
 import { HoverDirective } from './customDirectives/hover.directive';
+import { RemoveSpacesPipe } from './customPipes/remove-spaces.pipe';
+import { IsGithubProfilePipe } from './customPipes/is-github-profile.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { HoverDirective } from './customDirectives/hover.directive';
     CompareFollowersPageComponent,
     UserThemeComponent,
     HoverDirective,
+    RemoveSpacesPipe,
+    IsGithubProfilePipe,
   ],
   imports: [
     BrowserModule,

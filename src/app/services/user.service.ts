@@ -14,12 +14,12 @@ export class UserService {
   private userSource = new BehaviorSubject<any>(null);
   user = this.userSource.asObservable();
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `token ${environment.token}`,
-    }),
-  };
+  // httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     Authorization: `token ${environment.token}`,
+  //   }),
+  // };
 
   constructor(
     private http: HttpClient,
@@ -29,11 +29,7 @@ export class UserService {
   }
 
   async getUser(username: string) {
-    const value = this.http.get(
-      environment.production
-        ? `${environment.githubApi}/users/${username}`
-        : `${environment.githubApi}/users/${username}`
-    , this.httpOptions);
+    const value = this.http.get(`${environment.githubApi}/users/${username}`);
     return await lastValueFrom(value)
       .then((user) => {
         this.userSource.next(user);

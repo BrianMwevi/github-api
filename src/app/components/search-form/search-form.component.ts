@@ -16,9 +16,10 @@ export class SearchFormComponent implements OnInit {
 
   onSubmit(username: string): void {
     if (username.length > 1) {
-      username = username.replace(/\s/g, '').trim().toLocaleLowerCase();
-      this.newSearch.emit(username);
-      this.username = '';
+      console.log(username);
+
+      // this.newSearch.emit(username);
+      // this.username = '';
     }
   }
 }
