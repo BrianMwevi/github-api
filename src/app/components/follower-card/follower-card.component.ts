@@ -34,6 +34,7 @@ export class FollowerCardComponent implements OnInit {
       .getFollowers(username)
       .then((followers) => {
         this.followers = followers;
+        this.user = this.selectedUser
         this.requestLimitService.getRequestLimit().subscribe();
       })
       .catch((error) => {
