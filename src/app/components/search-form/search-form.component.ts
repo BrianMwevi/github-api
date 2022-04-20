@@ -15,11 +15,10 @@ export class SearchFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(username: string): void {
-    if (username.length > 1) {
-      console.log(username);
-
-      // this.newSearch.emit(username);
-      // this.username = '';
+    if (username.length > 0) {
+      username = username.replace(/\s/g, '').trim().toLocaleLowerCase();
+      this.newSearch.emit(username);
+      this.username = '';
     }
   }
 }
